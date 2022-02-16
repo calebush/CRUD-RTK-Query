@@ -26,7 +26,6 @@ function App() {
         setEdit(true);
         setEditItem(obj)
     };
-console.log("ddddd", editItem)
 
     const handleClose = () => {
         setOpen(false);
@@ -73,6 +72,7 @@ console.log("ddddd", editItem)
             }
             {error? <p>There is an error, please check</p> : ""}
 
+            {/*Add Course DialogActions*/}
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Add Course</DialogTitle>
                 <DialogContent>
@@ -92,7 +92,6 @@ console.log("ddddd", editItem)
                         id="units"
                         label="Units"
                         type="number"
-                        defaultValue={"55"}
                         fullWidth
                         variant="standard"
                         autoComplete={"off"}
@@ -103,6 +102,7 @@ console.log("ddddd", editItem)
                     <Button onClick={handleClose}>Add</Button>
                 </DialogActions>
             </Dialog>
+            {/*End Add Course DialogActions*/}
 
             {/*Edit DialogActions*/}
             <Dialog open={edit} onClose={handleClose}>
@@ -114,7 +114,7 @@ console.log("ddddd", editItem)
                         id="name"
                         label="Name"
                         type="text"
-                       // defaultValue={editItem.name}
+                        defaultValue={editItem?.name}
                         fullWidth
                         variant="standard"
                         autoComplete={"off"}
@@ -125,7 +125,7 @@ console.log("ddddd", editItem)
                         id="units"
                         label="Units"
                         type="number"
-                       // defaultValue={editItem.units}
+                        defaultValue={editItem?.units}
                         fullWidth
                         variant="standard"
                         autoComplete={"off"}
