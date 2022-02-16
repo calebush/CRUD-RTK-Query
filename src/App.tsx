@@ -12,15 +12,25 @@ import DialogContent from '@mui/material/DialogContent/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import {Course} from "./models/Course";
+
 function App() {
     const [open, setOpen] = React.useState(false);
+    const [edit, setEdit] = React.useState(false);
+    const [editItem, setEditItem] = React.useState<Course>();
 
     const handleClickOpen = () => {
         setOpen(true);
     };
+    const handleOpenEdit = (obj:any)=> {
+        setEdit(true);
+        setEditItem(obj)
+    };
+console.log("ddddd", editItem)
 
     const handleClose = () => {
         setOpen(false);
+        setEdit(false);
     };
 
     const {data = [], error, isLoading} = useGetAllCoursesQuery();
@@ -39,7 +49,7 @@ function App() {
                                                         data.courses.map((c:any)=>
                                                             <ListItem secondaryAction={
                                                                 <>
-                                                                    <IconButton onClick={()=>console.log("edit obj", c)} edge="end" aria-label="delete">
+                                                                    <IconButton onClick={(e)=>handleOpenEdit(c)} edge="end" aria-label="delete">
                                                                         <EditIcon color={"primary"} />
                                                                     </IconButton>
                                                                     <IconButton onClick={()=>console.log("my delete action...1")} edge="end" aria-label="delete">
@@ -93,6 +103,40 @@ function App() {
                     <Button onClick={handleClose}>Add</Button>
                 </DialogActions>
             </Dialog>
+
+            {/*Edit DialogActions*/}
+            <Dialog open={edit} onClose={handleClose}>
+                <DialogTitle>Update Course</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Name"
+                        type="text"
+                       // defaultValue={editItem.name}
+                        fullWidth
+                        variant="standard"
+                        autoComplete={"off"}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="units"
+                        label="Units"
+                        type="number"
+                       // defaultValue={editItem.units}
+                        fullWidth
+                        variant="standard"
+                        autoComplete={"off"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Update</Button>
+                </DialogActions>
+            </Dialog>
+            {/*End Edit DialogActions*/}
         </>
   );
 }
