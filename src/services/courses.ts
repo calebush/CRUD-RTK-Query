@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery}  from '@reduxjs/toolkit/query/react'
-import { Courses } from '../models/Course'
+import {Course, Courses, CourseUpdate} from '../models/Course'
 
 export const myApiStore = createApi({
     reducerPath: 'myApiStore',
@@ -8,7 +8,32 @@ export const myApiStore = createApi({
         getAllCourses: builder.query<Courses, void>({
             query:()=>'courses',
         }),
+        addCourse: builder.mutation<void, Course>({
+            query : course =>({
+                url: '/course',
+                method: 'POST',
+                body: course,
+            })
+        }),
+        updateCourse: builder.mutation<void, CourseUpdate>({
+            query : ({_id, ...rest}) =>({
+                url: `/course/${_id}`,
+                method: 'PATCH',
+                body: rest,
+            })
+        }),
+        deleteCourse: builder.mutation<void, string>({
+            query : (id) => ({
+                url: `/course/${id}`,
+                method: 'DELETE',
+            })
+        })
     }),
 })
 
-export const {useGetAllCoursesQuery} = myApiStore;
+export const {
+    useGetAllCoursesQuery,
+    useUpdateCourseMutation,
+    useAddCourseMutation,
+    useDeleteCourseMutation
+} = myApiStore;
