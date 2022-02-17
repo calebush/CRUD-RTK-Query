@@ -1,13 +1,14 @@
 export interface Course {
+        _id?: string,
         name:string,
         units:number,
-        compulsory:boolean
+        compulsory?:boolean
 }
 export interface CourseUpdate {
-        _id: string,
+        _id?: string,
         name:string,
         units:number,
-        compulsory:boolean
+        compulsory?:boolean
 }
 
 export interface Courses<>{};
