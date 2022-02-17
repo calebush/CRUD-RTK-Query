@@ -15,7 +15,7 @@ The main target of this app is to implement CRUD using the RTK-Query which is a 
 ### server
 
 This project uses the node express to implement the CRUD apis which is consumed by the RTK-Query (query and muttation).
-To run the server, navigate to the node-server folder and `npm install` then start with `node index` comand or nodemon index if you have nodemon globally installed in your machine. 
+To run the server, navigate to the node-server folder and `npm install` then start with `node index` comand or `nodemon index` if you have nodemon globally installed in your machine. 
 It uses the mongodb to store the data, so you must have mongpdb installed.
 
 ### `npm test`
