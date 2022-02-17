@@ -105,7 +105,8 @@ function App() {
             {/*End Add Course DialogActions*/}
 
             {/*Edit DialogActions*/}
-            <Dialog open={edit} onClose={handleClose}>
+            <Dialog
+                open={edit} onClose={handleClose}>
                 <DialogTitle>Update Course</DialogTitle>
                 <DialogContent>
                     <TextField
